@@ -6,78 +6,80 @@ const pattern = {
 }
 
 function formValidate() {
-
+    let flag1, flag2, flag3, flag4, flag5, flag6;
+    console.log('formValidate');
     let name = document.forms["RegForm"]["Name"];
     let nameInput = document.getElementById("name");
     if (pattern.username.test(name.value)) {
-        nameInput.textContent = "";
+        flag1 = true;
+        nameInput.innerHTML = "";
     }
     else {
-        nameInput.textContent = "Atleast 8 to 15 Character Required";
-        name.focus();
-        return false;
+        console.log(nameInput);
+        nameInput.innerHTML = "Atleast 8 to 15 Character Required";
+        flag1 = false;
     }
 
 
     let address = document.forms["RegForm"]["Address"];
     let addressInput = document.getElementById("address");
-    if (address.value == "") {
-        addressInput.textContent = "Address cannot be empty. Kindly fill ";
-        address.focus();
-        return false;
+    console.log(address.value);
+    if (address.value === "" || address.value === undefined) {
+        console.log('name is valid');
+        addressInput.innerHTML = "Address cannot be empty. Kindly fill ";
+        flag2 = false;
     }
     else {
-        addressInput.textContent = "";
+        console.log('name is INvalid');
+        addressInput.innerHTML = "";
+        flag2 = true;
     }
 
 
     let email = document.forms["RegForm"]["EMail"];
     let emailInput = document.getElementById("email");
     if (email.value == "") {
-        emailInput.textContent = "Email cannot be empty. Kindly fill ";
-        email.focus();
-        return false;
+        emailInput.innerHTML = "Email cannot be empty. Kindly fill ";
+        flag3 = false;
     }
     else if (pattern.email.test(email.value)) {
-        emailInput.textContent = "";
+        emailInput.innerHTML = "";
+        flag3 = true;
     }
     else {
-        emailInput.textContent = "Enter a vaild Email";
-        email.focus();
-        return false;
+        emailInput.innerHTML = "Enter a vaild Email";
+        flag3 = false;
     }
 
 
     let password = document.forms["RegForm"]["Password"];
     let passwordInput = document.getElementById("pwd");
     if (password.value == "") {
-        passwordInput.textContent = "Kindly fill the Password";
-        password.focus();
-        return false;
+        passwordInput.innerHTML = "Kindly fill the Password";
+        flag4 = false;
     }
     else if (pattern.password.test(password.value)) {
-        passwordInput.textContent = "";
+        passwordInput.innerHTML = "";
+        flag4 = true;
     }
     else {
-        passwordInput.textContent = "password must contain 1 uppercase letter, 1 lowercase letter, atleast 1 number any Symbols";
-        password.focus();
-        return false;
+        passwordInput.innerHTML = "password must contain 1 uppercase letter, 1 lowercase letter, atleast 1 number any Symbols";
+        flag4 = false;
     }
 
 
     let cpassword = document.forms["RegForm"]["cPassword"];
     let cpasswordInput = document.getElementById("cpwd");
     if (cpassword.value == "") {
-        cpasswordInput.textContent = "Kindly confirm your password";
-        cpassword.focus();
-        return false;
+        cpasswordInput.innerHTML = "Kindly confirm your password";
+        flag5 = false;
     }
     else if (cpassword.value == password.value) {
-        cpasswordInput.textContent = "";
+        cpasswordInput.innerHTML = "";
+        flag5 = true;
     } else {
-        cpasswordInput.textContent = "Password and confirm password must be same";
-        cpassword.focus();
-        return false;
+        cpasswordInput.innerHTML = "Password and confirm password must be same";
+        flag5 = false;
     }
 
 
@@ -85,18 +87,19 @@ function formValidate() {
     let phoneInput = document.getElementById("phone");
     let result = document.getElementById("result");
     if (phone.value == "") {
-        phoneInput.textContent = "Kindly fill the phone number";
-        phone.focus();
-        return false;
+        phoneInput.innerHTML = "Kindly fill the phone number";
+        flag6 = false;
     }
     else if (pattern.phone.test(phone.value)) {
-        phoneInput.textContent = "";
-        result.textContent = "Regex validation Success";
-        return false;
+        phoneInput.innerHTML = "";
+        flag6 = true;
     }
     else {
-        phoneInputs.textContent = "Enter a valid 10 digit number";
-        phone.focus();
-        return false;
+        phoneInputs.innerHTML = "Enter a valid 10 digit number";
+        flag6 = false;
+    }
+
+    if (flag1 && flag2 && flag3 && flag4 && flag5 && flag6) {
+        alert("All values are valid.")
     }
 }  
